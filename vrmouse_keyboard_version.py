@@ -114,6 +114,17 @@ def main ():
     
     dpi = keys_data[6]
     pygui.moveTo (i , j)
+    
+    
+    
+    
+    
+    #add controller for dpi with keys
+    
+    
+    
+    
+    
     while True:
         received_key = keyboard.read_key()
         
