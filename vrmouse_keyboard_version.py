@@ -11,17 +11,19 @@ def clear_screen():  #clear screen for widows/linux/mac
     else :
         os.system("clear")
         
-        
-def main ():
-    clear_screen()
-    
-    print(Fore.WHITE + """██╗   ██╗██████╗ ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
+def typography():
+    return"""██╗   ██╗██████╗ ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 ██║   ██║██╔══██╗████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
 ██║   ██║██████╔╝██╔████╔██║██║   ██║██║   ██║███████╗█████╗  
 ╚██╗ ██╔╝██╔══██╗██║╚██╔╝██║██║   ██║██║   ██║╚════██║██╔══╝  
  ╚████╔╝ ██║  ██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████║███████╗
-  ╚═══╝  ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-""")
+  ╚═══╝  ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝"""
+
+        
+def keys_input ():
+    clear_screen()
+    
+    print(typography())
     
     print(Fore.LIGHTYELLOW_EX + f"""Note : if you want to use special key 
           like shift , enter , etc use numbers ::::""")
@@ -32,21 +34,40 @@ def main ():
           {Fore.CYAN}[k3] {Fore.WHITE}Esc
           {Fore.CYAN}[k4] {Fore.WHITE}Shift
           {Fore.CYAN}[k5] {Fore.WHITE}Delete""")
+    click = input(Fore.WHITE + "Enter key or menu numbers for click key (press Enter for Enter KEY):").strip() or ("enter")
+    print(Fore.CYAN + "================================================================")
+    rightclick = input(Fore.WHITE + "Enter key or menu numbers for right click key (press Enter for Right shift KEY):").strip() or ("right shift")
+    print(Fore.CYAN + "================================================================")
+    upkey = input(Fore.WHITE + "Enter key or menu numbers for up key (press Enter for UP KEY):").strip() or ("up")
+    print(Fore.CYAN + "================================================================")
+    downkey = input(Fore.WHITE + "Enter key or menu numbers for down key (press Enter for DOWN KEY):").strip() or ("down")
+    print(Fore.CYAN + "================================================================")
+    rightkey = input(Fore.WHITE + "Enter key or menu numbers for right key (press Enter for RIGHT KEY):").strip() or ("right")
+    print(Fore.CYAN + "================================================================")
+    leftkey = input(Fore.WHITE + "Enter key or menu numbers for left key (press Enter for LEFT KEY):").strip() or ("left")
+    print(Fore.CYAN + "================================================================")
+    dpi = int(input(Fore.WHITE + "Enter DPI number (press Enter for '15'):").strip() or (15))
     
-    upkey = input("Enter key or menu numbers for up key (press Enter for UP KEY):").strip() or ("up")
-    print("================================================================")
-    downkey = input("Enter key or menu numbers for down key (press Enter for DOWN KEY):").strip() or ("down")
-    print("================================================================")
-    rightkey = input("Enter key or menu numbers for right key (press Enter for RIGHT KEY):").strip() or ("right")
-    print("================================================================")
-    leftkey = input("Enter key or menu numbers for left key (press Enter for LEFT KEY):").strip() or ("left")
+    #all condition for click
+    click = "alt" if click == "k1" else click 
+    click = "ctrl" if click == "k2" else click 
+    click = "esc" if click == "k3" else click 
+    click = "shift" if click == "k4" else click 
+    click = "delete" if click == "k5" else click 
+    
+    #all condition for right click 
+    rightclick = "alt" if rightclick == "k1" else rightclick 
+    rightclick = "ctrl" if rightclick == "k2" else rightclick 
+    rightclick = "esc" if rightclick == "k3" else rightclick 
+    rightclick = "shift" if rightclick == "k4" else rightclick 
+    rightclick = "delete" if rightclick == "k5" else rightclick    
     
     # all condition for upkey
-    upkey = "alt" if upkey == "k1" else upkey 
-    upkey = "ctrl" if upkey == "k2" else upkey 
-    upkey = "esc" if upkey == "k3" else upkey 
-    upkey = "shift" if upkey == "k4" else upkey 
-    upkey = "delete" if upkey == "k5" else upkey 
+    rightclick = "alt" if rightclick == "k1" else rightclick 
+    rightclick = "ctrl" if rightclick == "k2" else rightclick 
+    rightclick = "esc" if rightclick == "k3" else rightclick 
+    rightclick = "shift" if rightclick == "k4" else rightclick 
+    rightclick = "delete" if rightclick == "k5" else rightclick 
 
     #all condition for downkey
     downkey = "alt" if downkey == "k1" else downkey 
@@ -69,7 +90,50 @@ def main ():
     leftkey = "shift" if leftkey == "k4" else leftkey 
     leftkey = "delete" if leftkey == "k5" else leftkey 
 
+    return [click , rightclick , upkey , downkey , rightkey , leftkey , dpi]
 
 
+def main ():
+    #click , rightclick , upkey , downkey , rightkey , leftkey , dpi
+    keys_data = keys_input()
+    clear_screen()
+    
+    print(typography())
+    print(f"Screen size : {screen_tool.Screen_gin.screen_size()}")
+    print("________________________________________________")
+    print("Selected keys :")
+    print(f"Click : {keys_data[0]}      ,Right Click : {keys_data[1]}")
+    print(f"Up : {keys_data[2]}      ,Down : {keys_data[3]}")
+    print(f"Right : {keys_data[4]}      ,Left : {keys_data[5]}")
+    print(f"DPI number : {keys_data[6]}")
+    print("================================================================")
+    
+    center = screen_tool.Screen_gin.center_finder()
+    i = center[0]
+    j = center[1]
+    
+    dpi = keys_data[6]
+    pygui.moveTo (i , j)
+    while True:
+        received_key = keyboard.read_key()
+        
+        if received_key == keys_data[0] : #keys_data[0] for click 
+            pygui.click()
+        elif received_key == keys_data[1] :
+            pygui.rightClick()
+            
+        elif received_key == keys_data[2]:
+            j = j - dpi
+            
+        elif received_key == keys_data[3]:
+            j = j + dpi
+            
+        elif received_key == keys_data[4]:
+            i = i + dpi
+            
+        elif received_key == keys_data[5]:
+            i = i - dpi            
+            
+        pygui.moveTo(i , j) 
+        
 main()
-
