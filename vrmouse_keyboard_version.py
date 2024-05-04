@@ -12,7 +12,7 @@ def clear_screen():  #clear screen for widows/linux/mac
         os.system("clear")
         
 def typography():
-    return"""██╗   ██╗██████╗ ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
+    return Fore.WHITE + """██╗   ██╗██████╗ ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 ██║   ██║██╔══██╗████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
 ██║   ██║██████╔╝██╔████╔██║██║   ██║██║   ██║███████╗█████╗  
 ╚██╗ ██╔╝██╔══██╗██║╚██╔╝██║██║   ██║██║   ██║╚════██║██╔══╝  
@@ -99,14 +99,14 @@ def main ():
     clear_screen()
     
     print(typography())
-    print(f"Screen size : {screen_tool.Screen_gin.screen_size()}")
-    print("________________________________________________")
-    print("Selected keys :")
-    print(f"Click : {keys_data[0]}      ,Right Click : {keys_data[1]}")
-    print(f"Up : {keys_data[2]}      ,Down : {keys_data[3]}")
-    print(f"Right : {keys_data[4]}      ,Left : {keys_data[5]}")
-    print(f"DPI number : {keys_data[6]}")
-    print("================================================================")
+    print(f"{Fore.LIGHTBLACK_EX}Screen size : {Fore.LIGHTGREEN_EX + str(screen_tool.Screen_gin.screen_size())}")
+    print(Fore.WHITE +"________________________________________________")
+    print(Fore.LIGHTBLACK_EX + "Selected keys :")
+    print(f"{Fore.LIGHTBLACK_EX}Click : {Fore.LIGHTGREEN_EX + keys_data[0]}      ,{Fore.LIGHTBLACK_EX}Right Click : {Fore.LIGHTGREEN_EX + keys_data[1]}")
+    print(f"{Fore.LIGHTBLACK_EX}Up : {Fore.LIGHTGREEN_EX + keys_data[2]}      ,{Fore.LIGHTBLACK_EX}Down : {Fore.LIGHTGREEN_EX + keys_data[3]}")
+    print(f"{Fore.LIGHTBLACK_EX}Right : {Fore.LIGHTGREEN_EX + keys_data[4]}      ,{Fore.LIGHTBLACK_EX}Left : {Fore.LIGHTGREEN_EX + keys_data[5]}")
+    print(f"{Fore.LIGHTBLACK_EX}DPI number : {Fore.LIGHTGREEN_EX + str(keys_data[6])}")
+    print(Fore.WHITE + "================================================================")
     
     center = screen_tool.Screen_gin.center_finder()
     i = center[0]
