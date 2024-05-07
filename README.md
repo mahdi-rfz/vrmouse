@@ -6,3 +6,15 @@ Hello, I am very happy that you are on this page. This project is a virtual mous
 
 
 for run in linux base os use sudo 
+
+
+libs :
+```bash
+pip install keyboard
+```
+```bash
+pip install pyautogui
+```
+```bash
+pip install colorama
+```
