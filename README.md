@@ -5,7 +5,7 @@ Hello, I am very happy that you are on this page. This project is a virtual mous
 
 
 
-for run in linux base os use sudo 
+`for run in linux base os use sudo `
 
 
 libs :
