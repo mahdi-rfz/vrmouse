@@ -15,12 +15,12 @@ class Screen_gin :
     #Dividing by two is for find center of the screen
     
     
-    def screen_size():
+    def screen_size():  #output screen size to list
         size = tuple(pygui.size())
         return [size[0] , size[1]]
     
     
-    def try_range( width_try , height_try ):
+    def try_range( width_try , height_try ): #try screen range like 0 <= x <= 1080
         size = tuple(pygui.size())
         if width_try <= size[0] and height_try <= size[1] :
             return True
