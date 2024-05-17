@@ -25,71 +25,35 @@ def keys_input ():
     
     print(typography())
     
-    print(Fore.LIGHTYELLOW_EX + f"""Note : if you want to use special key 
-          like shift , enter , etc use numbers ::::""")
-    time.sleep(0.5)
-    print(f"""
-          {Fore.CYAN}[k1] {Fore.WHITE}Alt
-          {Fore.CYAN}[k2] {Fore.WHITE}Ctrl
-          {Fore.CYAN}[k3] {Fore.WHITE}Esc
-          {Fore.CYAN}[k4] {Fore.WHITE}Shift
-          {Fore.CYAN}[k5] {Fore.WHITE}Delete""")
-    click = input(Fore.WHITE + "Enter key or menu numbers for click key (press Enter for Enter KEY):").strip() or ("enter")
-    print(Fore.CYAN + "================================================================")
-    rightclick = input(Fore.WHITE + "Enter key or menu numbers for right click key (press Enter for Right shift KEY):").strip() or ("right shift")
-    print(Fore.CYAN + "================================================================")
-    upkey = input(Fore.WHITE + "Enter key or menu numbers for up key (press Enter for UP KEY):").strip() or ("up")
-    print(Fore.CYAN + "================================================================")
-    downkey = input(Fore.WHITE + "Enter key or menu numbers for down key (press Enter for DOWN KEY):").strip() or ("down")
-    print(Fore.CYAN + "================================================================")
-    rightkey = input(Fore.WHITE + "Enter key or menu numbers for right key (press Enter for RIGHT KEY):").strip() or ("right")
-    print(Fore.CYAN + "================================================================")
-    leftkey = input(Fore.WHITE + "Enter key or menu numbers for left key (press Enter for LEFT KEY):").strip() or ("left")
-    print(Fore.CYAN + "================================================================")
-    dpi = int(input(Fore.WHITE + "Enter DPI number (press Enter for '18'):").strip() or (18))
+    print(Fore.LIGHTYELLOW_EX + f"""::::When receiving the keys, just press the key you want ::::""")
     
-    #all condition for click
-    click = "alt" if click == "k1" else click 
-    click = "ctrl" if click == "k2" else click 
-    click = "esc" if click == "k3" else click 
-    click = "shift" if click == "k4" else click 
-    click = "delete" if click == "k5" else click 
-    
-    #all condition for right click 
-    rightclick = "alt" if rightclick == "k1" else rightclick 
-    rightclick = "ctrl" if rightclick == "k2" else rightclick 
-    rightclick = "esc" if rightclick == "k3" else rightclick 
-    rightclick = "shift" if rightclick == "k4" else rightclick 
-    rightclick = "delete" if rightclick == "k5" else rightclick    
-    
-    # all condition for upkey
-    rightclick = "alt" if rightclick == "k1" else rightclick 
-    rightclick = "ctrl" if rightclick == "k2" else rightclick 
-    rightclick = "esc" if rightclick == "k3" else rightclick 
-    rightclick = "shift" if rightclick == "k4" else rightclick 
-    rightclick = "delete" if rightclick == "k5" else rightclick 
-
-    #all condition for downkey
-    downkey = "alt" if downkey == "k1" else downkey 
-    downkey = "ctrl" if downkey == "k2" else downkey 
-    downkey = "esc" if downkey == "k3" else downkey 
-    downkey = "shift" if downkey == "k4" else downkey 
-    downkey = "delete" if downkey == "k5" else downkey 
-
-    #all condition for rightkey
-    rightkey = "alt" if rightkey == "k1" else rightkey 
-    rightkey = "ctrl" if rightkey == "k2" else rightkey 
-    rightkey = "esc" if rightkey == "k3" else rightkey 
-    rightkey = "shift" if rightkey == "k4" else rightkey 
-    rightkey = "delete" if rightkey == "k5" else rightkey 
-    
-    #all condition for leftkey
-    leftkey = "alt" if leftkey == "k1" else leftkey 
-    leftkey = "ctrl" if leftkey == "k2" else leftkey 
-    leftkey = "esc" if leftkey == "k3" else leftkey 
-    leftkey = "shift" if leftkey == "k4" else leftkey 
-    leftkey = "delete" if leftkey == "k5" else leftkey 
-    return [click , rightclick , upkey , downkey , rightkey , leftkey , dpi]
+    arg_key = 0
+    key_list = []
+    key_name = ["Click" , "RightClick" , "Up" , "Down" , "Right" , "Left"]
+    def_key = ["Enter" , "Right Shift" , "UP" , "Down" , "Right" , "Left "]
+    while True:
+        print(Fore.WHITE + f"Press the key you want for  {key_name[arg_key]} (press Enter for {def_key[arg_key]} key) : ")
+        key_input = keyboard.read_key() #I repeated this twice because of a problem that the keyboard library 
+        key_input = keyboard.read_key() #and counted the pressure twice each time.
+        print(Fore.CYAN + "================================================================")
+        key_list.append(key_input)
+        arg_key = arg_key + 1
+        if arg_key == 6:
+            break
+    dpi = int(input(Fore.WHITE + "Enter the number you want for DPA (press Enter for '20') :").strip() or (20))
+        
+    if key_list[1] == "enter":
+        key_list[1] = "right shift"
+    if key_list[2] == "enter":
+        key_list[2] = "up"
+    if key_list[3] == "enter":
+        key_list[3] = "down"
+    if key_list[4] == "enter":
+        key_list[4] = "right"
+    if key_list[5] == "enter":
+        key_list[5] = "left"
+        
+    return [key_list[0] , key_list[1] , key_list[2] , key_list[3] , key_list[4] , key_list[5] , dpi]
 
 
 def main ():
@@ -123,13 +87,13 @@ def main ():
         elif received_key == keys_data[1] :
             pygui.rightClick()
             
-        elif received_key == keys_data[2]:
+        elif received_key == keys_data[2]: #up
             j = j - dpi
             
         elif received_key == keys_data[3]:
             j = j + dpi
             
-        elif received_key == keys_data[4]:
+        elif received_key == keys_data[4]:#right
             i = i + dpi
             
         elif received_key == keys_data[5]:
