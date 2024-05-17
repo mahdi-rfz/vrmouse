@@ -25,8 +25,9 @@ def keys_input ():
     
     print(typography())
     
-    print(Fore.LIGHTYELLOW_EX + f"""::::When receiving the keys, just press the key you want ::::""")
-    
+    print(Fore.LIGHTYELLOW_EX + f"""::::When receiving the keys, just press the key you want ::::
+          """)
+    ######################################add [] in menu for q
     arg_key = 0
     key_list = []
     key_name = ["Click" , "RightClick" , "Up" , "Down" , "Right" , "Left"]
