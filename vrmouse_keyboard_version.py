@@ -5,6 +5,11 @@ import os
 import time 
 from colorama import Fore
 
+#for later :
+# 1 - change dpi with keys on keyboard 
+# 2 - add additional buttons
+# 3 - add data base
+
 def clear_screen():  #clear screen for widows/linux/mac/maybe my os :)
     if os.name == "nt":
         os.system("cls")
