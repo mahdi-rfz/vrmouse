@@ -32,19 +32,20 @@ def keys_input ():
     
     print(Fore.LIGHTYELLOW_EX + f"""::::When receiving the keys, just press the key you want ::::
           """)
-    ######################################add [] in menu for q
-    arg_key = 0
+    
+    key_arg = 0
     key_list = []
     key_name = ["Click" , "RightClick" , "Up" , "Down" , "Right" , "Left"]
-    def_key = ["Enter" , "Right Shift" , "UP" , "Down" , "Right" , "Left "]
+    key_def = ["Enter" , "Right Shift" , "UP" , "Down" , "Right" , "Left "]
+    key_sign = ["C" , "RC" , "U" , "D" , "R" , "L"]
     while True:
-        print(Fore.WHITE + f"Press the key you want for  {key_name[arg_key]} (press Enter for {def_key[arg_key]} key) : ")
+        print(Fore.WHITE + f"[{key_sign[key_arg]}] Press the key you want for  {key_name[key_arg]} (press Enter for {key_def[key_arg]} key) : ")
         key_input = keyboard.read_key() #I repeated this twice because of a problem that the keyboard library 
         key_input = keyboard.read_key() #and counted the pressure twice each time.
         print(Fore.CYAN + "================================================================")
         key_list.append(key_input)
-        arg_key = arg_key + 1
-        if arg_key == 6:
+        key_arg = key_arg + 1
+        if key_arg == 6:
             break
     dpi = int(input(Fore.WHITE + "Enter the number you want for DPA (press Enter for '20') :").strip() or (20))
         
