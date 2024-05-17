@@ -46,7 +46,7 @@ def keys_input ():
     print(Fore.CYAN + "================================================================")
     leftkey = input(Fore.WHITE + "Enter key or menu numbers for left key (press Enter for LEFT KEY):").strip() or ("left")
     print(Fore.CYAN + "================================================================")
-    dpi = int(input(Fore.WHITE + "Enter DPI number (press Enter for '15'):").strip() or (15))
+    dpi = int(input(Fore.WHITE + "Enter DPI number (press Enter for '18'):").strip() or (18))
     
     #all condition for click
     click = "alt" if click == "k1" else click 
