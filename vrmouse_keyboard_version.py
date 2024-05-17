@@ -5,13 +5,13 @@ import os
 import time 
 from colorama import Fore
 
-def clear_screen():  #clear screen for widows/linux/mac
+def clear_screen():  #clear screen for widows/linux/mac/maybe my os :)
     if os.name == "nt":
         os.system("cls")
     else :
         os.system("clear")
         
-def typography():
+def typography(): #typography for script
     return Fore.WHITE + """██╗   ██╗██████╗ ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 ██║   ██║██╔══██╗████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
 ██║   ██║██████╔╝██╔████╔██║██║   ██║██║   ██║███████╗█████╗  
@@ -89,7 +89,6 @@ def keys_input ():
     leftkey = "esc" if leftkey == "k3" else leftkey 
     leftkey = "shift" if leftkey == "k4" else leftkey 
     leftkey = "delete" if leftkey == "k5" else leftkey 
-
     return [click , rightclick , upkey , downkey , rightkey , leftkey , dpi]
 
 
@@ -114,6 +113,8 @@ def main ():
     
     dpi = keys_data[6]
     pygui.moveTo (i , j)
+    
+     #click , rightclick , upkey , downkey , rightkey , leftkey , dpi
     while True:
         received_key = keyboard.read_key()
         
@@ -135,5 +136,6 @@ def main ():
             i = i - dpi            
             
         pygui.moveTo(i , j) 
+
         
 main()
