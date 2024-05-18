@@ -6,7 +6,10 @@ from pynput import keyboard as pykeyboard
 import time 
 from colorama import Fore
 
+'''
+Explanation of variables :
 
+'''
 
 def clear_screen():  #clear screen for widows/linux/mac/maybe my os :)
     if os.name == "nt":
@@ -23,107 +26,158 @@ def typography(): #typography for script
   ╚═══╝  ╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝"""
 
         
-def keys_input ():
+def input_keys_function ():
     clear_screen()
     
     print(typography())
     
-    print(Fore.LIGHTYELLOW_EX + f"""::::When receiving the keys, just press the key you want ::::
+    print(Fore.LIGHTYELLOW_EX + f"""::::Choose from CTRL, Alt and Shift keys, our suggestion is the default::::
           """)
     
-    key_arg = 0
-    key_list = []
-    key_name = ["Click" , "RightClick"]
-    key_def = ["Enter" , "Right Shift"]
+    input_counter = 0
+    keys_received_list = []
+    key_function = ["Click" , "RightClick"]
+    default_key_name = ["Enter" , "Right Shift"]
     key_sign = ["C" , "RC"]
     while True:
-        print(Fore.WHITE + f"[{key_sign[key_arg]}] Press the key you want for  {key_name[key_arg]} (press Enter for {key_def[key_arg]} key) : ")
-        key_input = keyboard.read_key() #I repeated this twice because of a problem that the keyboard library 
-        key_input = keyboard.read_key() #and counted the pressure twice each time.
-        print(Fore.CYAN + "================================================================")
-        key_list.append(key_input)
-        key_arg = key_arg + 1
-        if key_arg == 2:
+        print(Fore.WHITE + f"{Fore.GREEN}[{key_sign[input_counter]}]{Fore.WHITE} Press the key you want for  {key_function[input_counter]} (press Enter for {default_key_name[input_counter]} key) : ")
+        input_keys = keyboard.read_key()                  #I repeated this twice because of a problem that the keyboard library 
+        input_keys = keyboard.read_key()                  #and counted the pressure twice each time.
+        print(Fore.LIGHTBLACK_EX + "================================================================")
+        keys_received_list.append(input_keys)
+        input_counter = input_counter + 1
+        if input_counter == 2:
             break
 
     input()
     input()
-    dpi = int(input(Fore.WHITE + "Enter the number you want for DPA (press Enter for '20') :").strip() or (20))
     
-    global block_keys
-    #         up , down , right , left
-    block_keys = ["up" , "down" , "right" , "left"]  #have bug <---------------------------------
-    #all conditions for block keys                                                  else for default
-    key_data = ["up" , "down" , "right" , "left" , "w" , "w" , "8" , "2" , "s" , "S" , "6" , "d" , "D" , "4" , "a" , "A"]
-    if block_keys[0] == "enter" :
-        block_keys[0] = "up"
-    if block_keys[1] == "enter" :
-        block_keys[1] = "down"
-    if block_keys[2] == "enter" :
-        block_keys[2] = "right"
-    if block_keys[3] == "enter" :
-        block_keys[3] = "left"
-    if block_keys[0] and block_keys[1] and block_keys[2] and block_keys[3] not in key_data :
-        raise "out of range"
+    while True :
+        dpi = ("Hello Reader")
+        try :
+            dpi = int(input(f"{Fore.GREEN}[DPI]{Fore.WHITE} Enter the number you want for DPA (Between {Fore.LIGHTYELLOW_EX}5-50{Fore.WHITE})(press Enter for '20') :").strip() or (20))
+        except ValueError :
+            pass
+            print(Fore.RED + "::::::::::::::::( Use number to give input ):::::::::::::::")
+        
+        s1 , s2 = False , False
+        if type(dpi) == int:
+            s1 = True
+            if dpi < 5 or dpi > 50 :
+                print(Fore.RED + "::::::::::::::::( The number you entered was out of range ):::::::::::::::")
+            else :
+                s2 = True
+            if s1 == True and s2 == True :
+                break
+        
+            
+        
     
-    #all conditions for click        
-    ckey_data = ["right ctrl" , "ctrl" , "right alt" , "alt" , "enter"]
-    if key_list[0] == "right ctrl" :
-        key_list[0] = pykeyboard.Key.ctrl_r
-    if key_list[0] == "ctrl" :
-        key_list[0] = pykeyboard.Key.ctrl_l
-    if key_list[0] == "right alt" :
-        key_list[0] = pykeyboard.Key.alt_r
-    if key_list[0] == "alt" :
-        key_list[0] = pykeyboard.Key.alt_l
-    if key_list[0] == "enter" :
-        key_list[0] = pykeyboard.Key.enter
+    global block_keys_list
+    #                   up  ,  down  ,  right  ,  left
+    block_keys_list = ["up" , "down" , "right" , "left"]
 
 
-    #all conditions for right click                                                
-    if key_list[1] == "right ctrl" :
-        key_list[1] = pykeyboard.Key.ctrl_r
-    if key_list[1] == "ctrl" :
-        key_list[1] = pykeyboard.Key.ctrl_l
-    if key_list[1] == "right alt" :
-        key_list[1] = pykeyboard.Key.alt_r
-    if key_list[1] == "alt" :
-        key_list[1] = pykeyboard.Key.alt_l
-    if key_list[1] == "enter" :
-        key_list[1] = pykeyboard.Key.shift_r
+    #cshow = click show           rcshow = right click show 
+    global cshow , rcshow
     
-    return [key_list[0] , key_list[1] , pykeyboard.Key.up , pykeyboard.Key.down , pykeyboard.Key.right , pykeyboard.Key.left , dpi]
+    #all conditions for click     
+    try :
+        if keys_received_list[0] == "right ctrl" :
+            keys_received_list[0] = pykeyboard.Key.ctrl_r
+            cshow = ("RIGHT CTRL")
+        if keys_received_list[0] == "ctrl" :
+            keys_received_list[0] = pykeyboard.Key.ctrl_l
+            cshow = ("CTRL")
+        if keys_received_list[0] == "right alt" :
+            keys_received_list[0] = pykeyboard.Key.alt_r
+            cshow = ("RIGHT ALT")
+        if keys_received_list[0] == "alt" :
+            keys_received_list[0] = pykeyboard.Key.alt_l
+            cshow = ("ALT")
+        if keys_received_list[0] == "enter" :
+            keys_received_list[0] = pykeyboard.Key.enter
+            cshow = ("ENTER")
+    except NameError:
+        keys_received_list[0] = pykeyboard.Key.enter
+        cshow = ("ENTER")
+        
+
+
+    #all conditions for right click      
+    try :                                          
+        if keys_received_list[1] == "right ctrl" :
+            keys_received_list[1] = pykeyboard.Key.ctrl_r
+            rcshow = ("RIGHT CTRL")
+        if keys_received_list[1] == "ctrl" :
+            keys_received_list[1] = pykeyboard.Key.ctrl_l
+            rcshow = ("CTRL")
+        if keys_received_list[1] == "right alt" :
+            keys_received_list[1] = pykeyboard.Key.alt_r
+            rcshow = ("RIGHT ALT")
+        if keys_received_list[1] == "alt" :
+            keys_received_list[1] = pykeyboard.Key.alt_l
+            rcshow = ("ALT")
+        if keys_received_list[1] == "enter" :
+            keys_received_list[1] = pykeyboard.Key.shift_r
+            rcshow = ("ENTER")
+    except NameError :
+            keys_received_list[1] = pykeyboard.Key.ctrl_r
+            rcshow = ("RIGHT CTRL")
+    
+    return [keys_received_list[0] , keys_received_list[1] , pykeyboard.Key.up , pykeyboard.Key.down , pykeyboard.Key.right , pykeyboard.Key.left , dpi]
 
 
 #----------------------------------------------------main-----------------------------------------------------
 #click , rightclick , upkey , downkey , rightkey , leftkey , dpi
-keys_data = keys_input()
+
+
+input_keys_ftf = input_keys_function()  #input keys ftf = input keys from the function
+
 clear_screen()
 
+print(typography())
+print(f"{Fore.LIGHTBLACK_EX}Screen size : {Fore.LIGHTGREEN_EX + str(screen_tool.Screen_gin.screen_size())}")
+print(Fore.LIGHTBLACK_EX + "Exit : " , Fore.LIGHTGREEN_EX +" ESC")
+print(Fore.WHITE +"________________________________________________")
+print(Fore.LIGHTBLACK_EX + "Selected keys :")
+print(f"{Fore.LIGHTBLACK_EX}Click : {Fore.LIGHTGREEN_EX + cshow}      {Fore.LIGHTBLACK_EX}Right Click : {Fore.LIGHTGREEN_EX + rcshow}")
+print(f"{Fore.LIGHTBLACK_EX}Up : {Fore.LIGHTGREEN_EX }UP Key      {Fore.LIGHTBLACK_EX}Down : {Fore.LIGHTGREEN_EX }DOWN Key")
+print(f"{Fore.LIGHTBLACK_EX}Right : {Fore.LIGHTGREEN_EX} RIGHT Key      {Fore.LIGHTBLACK_EX}Left : {Fore.LIGHTGREEN_EX}LEFT Key")
+print(f"{Fore.LIGHTBLACK_EX}DPI number : {Fore.LIGHTGREEN_EX + str(input_keys_ftf[6])}")
+print(Fore.WHITE + "================================================================")
 
 center = screen_tool.Screen_gin.center_finder()
 i =  center[0]
 j =  center[1]
+pygui.moveTo(i , j) 
+#When the program starts, it moves the pointer 
+# to the center of the screen for easy finding
 
-pygui.moveTo(i , j)
-dpi = keys_data[6]
+'''Description
+Here we have simulated the screen into
+a two dimensional Cartesian with the 
+pyautogui library , and i and j represent X and Y.
+'''
+
+dpi = input_keys_ftf[6]
 
 def on_press(key):
 
     global i , j
     try:
-        if key == keys_data[2]:
+        if key == input_keys_ftf[2]:
             j = j - dpi
-        elif key == keys_data[3]:
+        elif key == input_keys_ftf[3]:
             j = j + dpi
-        elif key == keys_data[4]:
+        elif key == input_keys_ftf[4]:
             i = i + dpi
-        elif key == keys_data[5]:
+        elif key == input_keys_ftf[5]:
             i = i - dpi 
         pygui.moveTo(i , j) 
-        if key ==  keys_data[0]:
+        if key ==  input_keys_ftf[0]:
             pygui.click()
-        elif key == keys_data[1]:
+        elif key == input_keys_ftf[1]:
             pygui.rightClick()
             
     except AttributeError:
@@ -135,11 +189,12 @@ def on_release(key):
         # Stop listener
         return False
 
-
-keyboard.block_key(block_keys[0])
-keyboard.block_key(block_keys[1])
-keyboard.block_key(block_keys[2])
-keyboard.block_key(block_keys[3])
+#-----------------------------block selected key-----------------------------
+keyboard.block_key(block_keys_list[0])
+keyboard.block_key(block_keys_list[1])
+keyboard.block_key(block_keys_list[2])
+keyboard.block_key(block_keys_list[3])
+#----------------------------------------------------------------------------
 
 
 with pykeyboard.Listener(on_press=on_press, on_release=on_release) as listener:
