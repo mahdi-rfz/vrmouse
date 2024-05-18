@@ -50,6 +50,7 @@ def input_keys_function ():
             break
 
     input()
+    print(Fore.LIGHTBLACK_EX + ":::::::::( Press Enter ):::::::::")
     input()
     
     while True :
@@ -98,6 +99,7 @@ def input_keys_function ():
         if keys_received_list[0] == "enter" :
             keys_received_list[0] = pykeyboard.Key.enter
             cshow = ("ENTER")
+        e = cshow
     except NameError:
         keys_received_list[0] = pykeyboard.Key.enter
         cshow = ("ENTER")
@@ -121,6 +123,7 @@ def input_keys_function ():
         if keys_received_list[1] == "enter" :
             keys_received_list[1] = pykeyboard.Key.shift_r
             rcshow = ("ENTER")
+        e = rcshow
     except NameError :
             keys_received_list[1] = pykeyboard.Key.ctrl_r
             rcshow = ("RIGHT CTRL")
@@ -146,6 +149,10 @@ print(f"{Fore.LIGHTBLACK_EX}Up : {Fore.LIGHTGREEN_EX }UP Key      {Fore.LIGHTBLA
 print(f"{Fore.LIGHTBLACK_EX}Right : {Fore.LIGHTGREEN_EX} RIGHT Key      {Fore.LIGHTBLACK_EX}Left : {Fore.LIGHTGREEN_EX}LEFT Key")
 print(f"{Fore.LIGHTBLACK_EX}DPI number : {Fore.LIGHTGREEN_EX + str(input_keys_ftf[6])}")
 print(Fore.WHITE + "================================================================")
+print(Fore.CYAN + "             Coding by mahdi-rfz")
+print(Fore.LIGHTCYAN_EX + "   Contact us : https://github.com/mahdi-rfz")
+print(Fore.WHITE + "================================================================")
+Fore.WHITE
 
 center = screen_tool.Screen_gin.center_finder()
 i =  center[0]
