@@ -44,26 +44,60 @@ def keys_input ():
         if key_arg == 6:
             break
     dpi = int(input(Fore.WHITE + "Enter the number you want for DPA (press Enter for '20') :").strip() or (20))
+    
+    global block_keys
+    #         up , down , right , left
+    block_keys = [key_list[2] , key_list[3], key_list[4] , key_list[5]]  #have bug <---------------------------------
+    #all conditions for click                                                     else for default
+    key_list[0] = pykeyboard.Key.enter if key_list[0] == "enter" else key_list[0] == pykeyboard.Key.enter
+    key_list[0] = pykeyboard.Key.enter if key_list[0] == "enter" else key_list[0] 
+    key_list[0] = pykeyboard.Key.enter if key_list[0] == "enter" else key_list[0] 
+    key_list[0] = pykeyboard.Key.enter if key_list[0] == "enter" else key_list[0] 
+    key_list[0] = pykeyboard.Key.enter if key_list[0] == "enter" else key_list[0] 
+    
+    #all conditions for right click                                                
+    key_list[1] = pykeyboard.Key.shift_r if key_list[1] == "enter" else key_list[1] == pykeyboard.Key.shift_r
+    key_list[1] = pykeyboard.Key.enter if key_list[1] == "enter" else key_list[1] 
+    key_list[1] = pykeyboard.Key.enter if key_list[1] == "enter" else key_list[1] 
+    key_list[1] = pykeyboard.Key.enter if key_list[1] == "enter" else key_list[1] 
+    key_list[1] = pykeyboard.Key.enter if key_list[1] == "enter" else key_list[1] 
+
+    #all conditions for up
+    key_list[2] = pykeyboard.Key.up if key_list[2] == "enter" else key_list[2] == pykeyboard.Key.up
+    key_list[2] = pykeyboard.Key.enter if key_list[2] == "enter" else key_list[2] 
+    key_list[2] = pykeyboard.Key.enter if key_list[2] == "enter" else key_list[2] 
+    key_list[2] = pykeyboard.Key.enter if key_list[2] == "enter" else key_list[2] 
+    key_list[2] = pykeyboard.Key.enter if key_list[2] == "enter" else key_list[2] 
         
-    if key_list[1] == "enter":
-        key_list[1] = "right shift"
-    if key_list[2] == "enter":
-        key_list[2] = "up"
-    if key_list[3] == "enter":
-        key_list[3] = "down"
-    if key_list[4] == "enter":
-        key_list[4] = "right"
-    if key_list[5] == "enter":
-        key_list[5] = "left"
+    #all conditions for down
+    key_list[3] = pykeyboard.Key.down if key_list[3] == "enter" else key_list[3] == pykeyboard.Key.down
+    key_list[3] = pykeyboard.Key.enter if key_list[3] == "enter" else key_list[3] 
+    key_list[3] = pykeyboard.Key.enter if key_list[3] == "enter" else key_list[3] 
+    key_list[3] = pykeyboard.Key.enter if key_list[3] == "enter" else key_list[3] 
+    key_list[3] = pykeyboard.Key.enter if key_list[3] == "enter" else key_list[3] 
         
+    #all conditions for right
+    key_list[4] = pykeyboard.Key.right if key_list[4] == "enter" else key_list[4] == pykeyboard.Key.right
+    key_list[4] = pykeyboard.Key.enter if key_list[4] == "enter" else key_list[4] 
+    key_list[4] = pykeyboard.Key.enter if key_list[4] == "enter" else key_list[4] 
+    key_list[4] = pykeyboard.Key.enter if key_list[4] == "enter" else key_list[4] 
+    key_list[4] = pykeyboard.Key.enter if key_list[4] == "enter" else key_list[4] 
+    
+    #all conditions for left
+    key_list[5] = pykeyboard.Key.left  if key_list[5] == "enter" else key_list[5] == pykeyboard.Key.left
+    key_list[5] = pykeyboard.Key.enter if key_list[5] == "enter" else key_list[5] 
+    key_list[5] = pykeyboard.Key.enter if key_list[5] == "enter" else key_list[5] 
+    key_list[5] = pykeyboard.Key.enter if key_list[5] == "enter" else key_list[5] 
+    key_list[5] = pykeyboard.Key.enter if key_list[5] == "enter" else key_list[5] 
+    
+    
     return [key_list[0] , key_list[1] , key_list[2] , key_list[3] , key_list[4] , key_list[5] , dpi]
 
 
-
+#----------------------------------------------------main-----------------------------------------------------
 #click , rightclick , upkey , downkey , rightkey , leftkey , dpi
 keys_data = keys_input()
 clear_screen()
-
 
 center = screen_tool.Screen_gin.center_finder()
 i =  center[0]
@@ -76,20 +110,20 @@ def on_press(key):
 
     global i , j
     try:
-        if key == pykeyboard.Key.up:
+        if key == keys_data[2]:
             j = j - dpi
-        elif key == pykeyboard.Key.down:
+        elif key == keys_data[3]:
             j = j + dpi
-        elif key == pykeyboard.Key.right:
-            
+        elif key == keys_data[4]:
             i = i + dpi
-        elif key == pykeyboard.Key.left:
+        elif key == keys_data[5]:
             i = i - dpi 
         pygui.moveTo(i , j) 
-        if key ==  x:
+        if key ==  keys_data[0]:
             pygui.click()
-        elif key == pykeyboard.Key.name("shift_r"):
+        elif key == keys_data[1]:
             pygui.rightClick()
+            
     except AttributeError:
         pass
     
@@ -100,10 +134,11 @@ def on_release(key):
         return False
 
 
-keyboard.block_key('up')
-keyboard.block_key('down')
-keyboard.block_key('right')
-keyboard.block_key('left')
+keyboard.block_key(block_keys[0])
+keyboard.block_key(block_keys[1])
+keyboard.block_key(block_keys[2])
+keyboard.block_key(block_keys[3])
+print(block_keys[2])
 
 with pykeyboard.Listener(on_press=on_press, on_release=on_release) as listener:
     listener.join()
