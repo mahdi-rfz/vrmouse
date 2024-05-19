@@ -122,7 +122,7 @@ def input_keys_function ():
             rcshow = ("ALT")
         if keys_received_list[1] == "enter" :
             keys_received_list[1] = pykeyboard.Key.shift_r
-            rcshow = ("ENTER")
+            rcshow = ("RIGHT SHIFT")
         e = rcshow
     except NameError :
             keys_received_list[1] = pykeyboard.Key.ctrl_r
