@@ -6,6 +6,13 @@ from pynput import keyboard as pykeyboard
 import time 
 from colorama import Fore
 
+'''NEXT :
+1 - add live dpi controller
+2 - costume exit buttone 
+'''
+
+
+
 '''
 Explanation of variables :
 
