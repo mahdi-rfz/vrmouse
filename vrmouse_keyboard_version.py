@@ -200,7 +200,7 @@ a two dimensional Cartesian with the
 pyautogui library , and i and j represent X and Y.
 '''
 
-dpi = input_keys_ftf[6]
+dpi = input_keys_ftf[7]
 
 def on_press(key):
 
