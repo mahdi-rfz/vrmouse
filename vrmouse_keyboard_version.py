@@ -64,7 +64,7 @@ def input_keys_function ():
     while True :
         dpi = ("Hello Reader")
         try :
-            dpi = int(input(f"{Fore.GREEN}[DPI]{Fore.WHITE} Enter the number you want for DPA (Between {Fore.LIGHTYELLOW_EX}5-50{Fore.WHITE})(press Enter for '20') :").strip() or (20))
+            dpi = int(input(f"{Fore.GREEN}[DPI]{Fore.WHITE} Enter the number you want for DPA (Between {Fore.LIGHTYELLOW_EX}5-50{Fore.WHITE})(press Enter for '28') :").strip() or (28))
         except ValueError :
             pass
             print(Fore.RED + "::::::::::::::::( Use number to give input ):::::::::::::::")
